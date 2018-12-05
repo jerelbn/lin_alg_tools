@@ -5,12 +5,9 @@
 #include <iostream>
 
 
-// Type needed for eigenvalue sorting in DGEES
+// Select type and function needed for eigenvalue sorting in DGEES
 typedef int select_t(double*, double*);
-int select_(double *ar, double *ai)
-{
-  return *ar < 0.0;
-}
+inline int select_(double *ar, double *ai) { return *ar < 0.0; }
 
 // dgees_ is a symbol in the LAPACK library files
 extern "C"
