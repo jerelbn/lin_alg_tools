@@ -38,7 +38,7 @@ public:
     // Find P that solves CARE
     U11_ = Z_.template block<M,M>(0,0);
     U21_ = Z_.template block<M,M>(M,0);
-    P = U11_.transpose().ldlt().solve(U21_.transpose());
+    P = U11_.transpose().householderQr().solve(U21_.transpose());
   }
 
 };
