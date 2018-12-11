@@ -16,7 +16,7 @@ private:
   typedef Matrix<double, N, N> MatrixN;
   typedef Matrix<double, M*2, M*2> MatrixM2;
 
-  MatrixM Z11_, Z21_;
+  MatrixM U11_, U21_;
   MatrixM2 H_, Z_;
   SchurSolver<M*2> schur_solver_;
 
@@ -36,9 +36,9 @@ public:
     schur_solver_.solve(H_.data(), Z_.data());
 
     // Find P that solves CARE
-    Z11_ = Z_.template block<M,M>(0,0);
-    Z21_ = Z_.template block<M,M>(M,0);
-    P = Z11_.transpose().inverse() * Z21_.transpose();
+    U11_ = Z_.template block<M,M>(0,0);
+    U21_ = Z_.template block<M,M>(M,0);
+    P = U11_.transpose().ldlt().solve(U21_.transpose());
   }
 
 };
