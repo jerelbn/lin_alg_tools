@@ -21,7 +21,7 @@ private:
   SchurSolver<M*2> schur_solver_;
 
 public:
-
+  EIGEN_MAKE_ALIGNED_OPERATOR_NEW
   CareSolver() : schur_solver_(true, true) {}
 
   void solve(MatrixM& P, const MatrixM& A, const Matrix<double,M,N>& B, const MatrixM& Q, const MatrixN& R)
